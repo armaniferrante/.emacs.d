@@ -1,14 +1,19 @@
 ;; backup files go into designated directory
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;; Setup package sources
+;; setup package sources
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; Basic UI changes
+;; bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; basic UI changes
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -21,25 +26,28 @@
 (setq-default tab-width 2)
 (setq c-basic-offset 2)
 
-;; switch between header/implementation files
-(add-hook 'c-mode-common-hook
-	  (lambda()
-	        (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
-
 ;; highlight matching parens with no delay
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
-;; autofill
+;; easy window navigation
+(global-set-key (kbd "s-<up>") 'windmove-up)
+(global-set-key (kbd "s-<down>") 'windmove-down)
+(global-set-key (kbd "s-<left>") 'windmove-left)
+(global-set-key (kbd "s-<right>") 'windmove-right)
+
+;; max line length 80 chars
 (add-hook 'go-mode-hook 'turn-on-auto-fill)
 (add-hook 'c-mode-hook 'turn-on-auto-fill)
 (add-hook 'c++-mode-hook 'turn-on-auto-fill)
-(setq-default fill-column 100)
+(add-hook 'python-mode-hook 'turn-on-auto-fill)
+(setq-default fill-column 80)
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(use-package cyberpunk-theme
+  :ensure t)
+
+(use-package org-mode
+  :ensure t)
 
 (use-package try
   :ensure t)
@@ -49,9 +57,9 @@
   :config
   (which-key-mode))
 
-(use-package sublime-themes
+;; git porcelain
+(use-package magit
   :ensure t)
-;(load-theme 'spolsky t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Go
@@ -132,7 +140,6 @@
     (global-auto-complete-mode t)
     ))
 
-
 ;; on the fly syntax checking
 (use-package flycheck
   :ensure t
@@ -157,35 +164,51 @@
 		(ggtags-mode 1))))
   )
 
-;;;;;;;;;;;;;;;;;;;;;;;;
-;; Ediff settings
+;; switch between header/implementation files
+(add-hook 'c-mode-common-hook
+	  (lambda()
+	        (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
-;; ignore space, split side by side, prevent popup
-(custom-set-variables
- '(ediff-diff-options "-w")
- '(ediff-split-window-function (quote split-window-horizontally))
- '(ediff-window-setup-function (quote ediff-setup-windows-plain)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; python
+
+;; dependency: sudo pip install virtualenv
+;;             jedi: install-server
+(use-package jedi
+  :ensure t)
+
+(defun my-python-mode-hook ()
+  (local-set-key (kbd "M-.") 'jedi:goto-definition)
+  (local-set-key (kbd "M-*") 'jedi:goto-definition-pop-marker)
+  )
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; shell
+
+;; open shell in same window
+(add-to-list 'display-buffer-alist
+             `(,(regexp-quote "*shell") display-buffer-same-window))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Goodies
 
-;(use-package nyan-mode
-;  :ensure t)
-;(nyan-mode 1)
+(use-package nyan-mode
+  :ensure t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" "c48551a5fb7b9fc019bf3f61ebf14cf7c9cdca79bcb2a4219195371c02268f11" default)))
+ '(ediff-diff-options "-w")
+ '(ediff-split-window-function (quote split-window-horizontally))
+ '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell ggtags yasnippet flycheck auto-complete which-key try use-package))))
+    (org-mode yasnippet which-key w3m use-package try sublime-themes solidity-mode org-link-minor-mode nyan-mode magit load-theme-buffer-local jedi go-guru go-autocomplete ggtags flymake-solidity flycheck exec-path-from-shell cyberpunk-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
