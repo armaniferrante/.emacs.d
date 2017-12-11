@@ -30,17 +30,28 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
+;; create matching brackets/parenthesis automatically
+(use-package autopair
+  :ensure t)
+
 ;; easy window navigation
 (global-set-key (kbd "s-<up>") 'windmove-up)
 (global-set-key (kbd "s-<down>") 'windmove-down)
 (global-set-key (kbd "s-<left>") 'windmove-left)
 (global-set-key (kbd "s-<right>") 'windmove-right)
 
-;; max line length 80 chars
-(add-hook 'go-mode-hook 'turn-on-auto-fill)
-(add-hook 'c-mode-hook 'turn-on-auto-fill)
-(add-hook 'c++-mode-hook 'turn-on-auto-fill)
-(add-hook 'python-mode-hook 'turn-on-auto-fill)
+;; features for all programming modes
+(defun all-code-hooks ()
+  ;; max line length 80 chars
+  (turn-on-auto-fill)
+  ;; add matching paren/bracket automatically
+  (autopair-mode))
+
+(add-hook 'go-mode-hook 'all-code-hooks)
+(add-hook 'c-mode-hook 'all-code-hooks)
+(add-hook 'c++-mode-hook 'all-code-hooks)
+(add-hook 'python-mode-hook 'all-code-hooks)
+
 (setq-default fill-column 80)
 
 (use-package cyberpunk-theme
