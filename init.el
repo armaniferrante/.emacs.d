@@ -101,15 +101,39 @@
 (use-package go-guru
   :ensure t)
 
+(use-package gotest
+  :ensure t)
+
+;; Runs tests and code coverage everytime we save a file.
+;; Note: I've made one adjustment to gotest.el:
+;; Hardcode the --coverprofile= argument to always use the same
+;; coverage output directory, so as not to prompt everytime you save.
+(setq compilation-window-height 10)
+(defun my-go-test-mode-hook ()
+  ;; *Go Test* is the name of the buffer. See gotest.el.
+  (when (not (get-buffer-window "*Go Test*"))
+    (save-selected-window
+      (save-excursion
+        (let* ((w (split-window-vertically))
+               (h (window-height w)))
+          (select-window w)
+          (switch-to-buffer "*Go Test*")
+          (shrink-window (- h compilation-window-height)))))))
+(add-hook 'go-test-mode-hook 'my-go-test-mode-hook)
+
 ;; go get -u github.com/rogpeppe/godef/...
 (defun my-go-mode-hook ()
-  ; gofmt on save
-  (add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'before-save-hook 'go-save-hook)
   ; godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "M-*") 'pop-tag-mark)
   )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
+
+(defun go-save-hook ()
+  (when (eq major-mode 'go-mode)
+    (gofmt-before-save)
+    (go-test-current-coverage)))
 
 ;; autocomplete
 
