@@ -31,7 +31,6 @@
 ;; Note: I've made one adjustment to gotest.el:
 ;; Hardcode the --coverprofile= argument to always use the same
 ;; coverage output directory, so as not to prompt everytime you save.
-(setq compilation-window-height 10)
 (defun my-go-test-mode-hook ()
   ;; *Go Test* is the name of the buffer. See gotest.el.
   (when (not (get-buffer-window "*Go Test*"))
@@ -50,7 +49,6 @@
   ; godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "M-*") 'pop-tag-mark)
-  (fci-mode 1)
   )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 

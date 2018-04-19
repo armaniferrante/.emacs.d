@@ -32,7 +32,6 @@
 (defun my-python-mode-hook ()
   (local-set-key (kbd "M-.") 'jedi:goto-definition)
   (local-set-key (kbd "M-*") 'jedi:goto-definition-pop-marker)
-  (fci-mode 1)
   (setq flycheck-checker 'python-mypy)
 )
 (add-hook 'python-mode-hook 'my-python-mode-hook)

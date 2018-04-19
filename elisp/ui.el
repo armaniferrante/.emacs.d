@@ -34,14 +34,39 @@
              `(,(regexp-quote "*shell") display-buffer-same-window))
 
 
-;; always pop flycheck buffer at bottom to 1/10 of screen height
+;; always pop the following buffers at the bottom
+(setq compilation-window-height 25)
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*Flycheck errors*" eos)
               (display-buffer-reuse-window
                display-buffer-in-side-window)
               (side            . bottom)
               (reusable-frames . visible)
-              (window-height   . 0.1)))
+              (window-height   . .1)))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Cargo Build*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . .1)))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Cargo Test*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . .1)))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Cargo Run*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . .1)))
 
 ;; easy window navigation
 (global-set-key (kbd "s-<up>") 'windmove-up)

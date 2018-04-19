@@ -1,3 +1,16 @@
+;;; Commentary:
+;;;
+;;; To setup gdb on mac-os, you need to add to ~/.gdbinit:
+;;;
+;;; set startup-with-shell off
+;;; python
+;;; # This is valid for rustup rust installation only.  The path will be different for Homebrew-installed Rust.
+;;; import os
+;;; sys.path.insert(0, os.path.join(os.getenv('HOME'), ".rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/etc"))
+;;; import gdb_rust_pretty_printing
+;;; gdb_rust_pretty_printing.register_printers(gdb)
+;;; end
+
 (use-package rust-mode
   :ensure t)
 
@@ -32,7 +45,6 @@
   (flycheck-rust-setup)
   (rust-enable-format-on-save)
   (racer-mode)
-  (fci-mode 1)
   (set-two-spaces))
 
 (add-hook 'rust-mode-hook 'my-rust-mode-hook)
