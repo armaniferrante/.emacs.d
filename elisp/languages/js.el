@@ -3,9 +3,6 @@
 (define-key js2-mode-map (kbd "M-.") nil)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-;; two space tabs
-(setq js-indent-level 2)
-
 ;; disable js2-mode error highlighting (use flycheck instead)
 (setq js2-mode-show-parse-errors nil
       js2-mode-show-strict-warnings nil)
@@ -21,10 +18,11 @@
   :ensure t)
 
 (defun my-js-mode-hook ()
-  (setq flycheck-checker 'javascript-eslint))
+  (setq flycheck-checker #'javascript-eslint))
 
-(add-hook 'js2-mode-hook 'my-js-mode-hook)
+(add-hook 'js2-mode-hook #'my-js-mode-hook)
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
+
 (js2r-add-keybindings-with-prefix "C-c C-r")
 (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
 

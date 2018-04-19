@@ -16,10 +16,11 @@
 (use-package fill-column-indicator
   :ensure t)
 
-;; tabs as two spaces
-(setq-default indent-tabs-mode nil)
+;; ensure we're always using tabs
+(setq-default tab-always-indent 'complete)
 (setq-default tab-width 2)
 (setq c-basic-offset 2)
+(setq js-indent-level 2)
 
 ;; highlight matching parens with no delay
 (setq show-paren-delay 0)
