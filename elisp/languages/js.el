@@ -14,6 +14,7 @@
   :ensure t)
 (use-package xref-js2
   :ensure t)
+;; first run: brew install the_silver_searcher
 (use-package ag
   :ensure t)
 
