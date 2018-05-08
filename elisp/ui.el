@@ -2,7 +2,7 @@
   :ensure t)
 
 ;; font size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 110)
 
 ;; always show line number
 (global-linum-mode 1)
