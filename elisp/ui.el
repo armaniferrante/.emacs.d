@@ -21,6 +21,7 @@
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
 (setq js-indent-level 4)
+;(setq typescript-indent-level 4)
 
 ;; highlight matching parens with no delay
 (setq show-paren-delay 0)
@@ -63,6 +64,14 @@
 
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*Cargo Run*" eos)
+              (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . .1)))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*mocha tests*" eos)
               (display-buffer-reuse-window
                display-buffer-in-side-window)
               (side            . bottom)

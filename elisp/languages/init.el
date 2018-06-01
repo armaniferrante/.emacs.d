@@ -13,6 +13,7 @@
 (add-hook 'python-mode-hook 'all-code-hooks)
 (add-hook 'rust-mode-hook 'all-code-hooks)
 (add-hook 'js2-mode-hook 'all-code-hooks)
+(add-hook 'typescript-mode-hook 'all-code-hooks)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (load "~/.emacs.d/elisp/languages/rust.el")
