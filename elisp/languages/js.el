@@ -18,6 +18,9 @@
 (use-package ag
   :ensure t)
 
+(use-package prettier-js
+	:ensure t)
+
 (defun my-js-mode-hook ()
   (setq flycheck-checker #'javascript-eslint))
 
@@ -45,7 +48,7 @@
 
 (use-package typescript-mode
   :ensure t)
-
+(add-hook 'typescript-mode-hook 'prettier-js-mode)
 (use-package tide
   :ensure t)
 (defun setup-tide-mode ()

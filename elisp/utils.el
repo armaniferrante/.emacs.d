@@ -12,3 +12,5 @@
 
 ;; backup files go into designated directory
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq make-backup-files nil)
