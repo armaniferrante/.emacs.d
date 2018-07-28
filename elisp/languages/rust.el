@@ -23,6 +23,12 @@
 (use-package rust-playground
   :ensure t)
 
+;; on the fly syntax checking
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
 ; curl https://sh.rustup.rs -sSf | sh
 ; rustup component add rust-src
 ; cargo install racer

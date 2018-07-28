@@ -9,7 +9,6 @@
 
 (add-hook 'go-mode-hook 'all-code-hooks)
 (add-hook 'c-mode-hook 'all-code-hooks)
-(add-hook 'c++-mode-hook 'all-code-hooks)
 (add-hook 'python-mode-hook 'all-code-hooks)
 (add-hook 'rust-mode-hook 'all-code-hooks)
 (add-hook 'js2-mode-hook 'all-code-hooks)
@@ -20,6 +19,8 @@
 (load "~/.emacs.d/elisp/languages/go.el")
 (load "~/.emacs.d/elisp/languages/terraform.el")
 (load "~/.emacs.d/elisp/languages/solidity.el")
-(load "~/.emacs.d/elisp/languages/c++.el")
 (load "~/.emacs.d/elisp/languages/python.el")
 (load "~/.emacs.d/elisp/languages/js.el")
+
+(use-package protobuf-mode
+  :ensure t)
