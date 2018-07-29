@@ -1,5 +1,10 @@
 (use-package atom-one-dark-theme
   :ensure t)
+(column-number-mode 1)
+
+;; transparent window
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
 
 ;; font size
 (set-face-attribute 'default nil :height 110)
