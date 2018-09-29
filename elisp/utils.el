@@ -14,3 +14,6 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 (setq make-backup-files nil)
+
+(use-package docker-tramp
+  :ensure t)

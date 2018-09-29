@@ -11,6 +11,27 @@
 ;;; gdb_rust_pretty_printing.register_printers(gdb)
 ;;; end
 
+;; directions from https://gist.github.com/danisfermi/17d6c0078a2fd4c6ee818c954d2de13c
+;; Open Keychain Access
+;; In menu, open Keychain Access > Certificate Assistant > Create a Certificate
+;; Give it a name (e.g. gdbcert)
+;; Identity type: Self Signed Root
+;; Certificate type: Code Signing
+;; Check: Let Me Override Defaults
+;; Continue until "Specify a Location For"
+;; Set Keychain location to System. If this yields the following error: Certificate Error: Unknown Error =-2,147,414,007 Set Location to Login, Unlock System by click on the lock at the top left corner and drag and drop the certificate gdbcert to the System Keychain.
+;; Create certificate and close Certificate Assistant.
+;; Find the certificate in System keychain.
+;; Double click certificate.
+;; Expand Trust, set Code signing to Always Trust
+;; Restart taskgated in terminal: killall taskgated
+;; Enable root account by following the steps given below: Open System Preferences. Go to User & Groups > Unlock. Login Options > "Join" (next to Network Account Server). Click "Open Directory Utility". Go up to Edit > Enable Root User.
+;; Codesign gdb using your certificate: codesign -fs gdbc /usr/local/bin/gdb
+;; Shut down your mac and restart in recovery mode (hold down command-R until apple logo appears)
+;; Open terminal window
+;; Modify System Integrity Protection to allow debugging: csrutil enable --without debug
+;; Reboot your Mac. Debugging with gdb should now work as expected.
+
 (use-package rust-mode
   :ensure t)
 
@@ -50,8 +71,8 @@
 (defun my-rust-mode-hook ()
   (flycheck-rust-setup)
   (rust-enable-format-on-save)
-  (racer-mode)
-  (set-two-spaces))
+  (racer-mode))
+  ;(set-two-spaces))
 
 (add-hook 'rust-mode-hook 'my-rust-mode-hook)
 (add-hook 'racer-mode-hook #'eldoc-mode)
@@ -63,4 +84,5 @@
 ;;       before getting rust-fmt to work properly
 
 ;; to find: echo `rustc --print sysroot`/lib/rustlib/src/rust/src
-(setq racer-rust-src-path "/Users/armaniferrante/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src")
+;(setq racer-rust-src-path "/Users/armaniferrante/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src")
+(setq racer-rust-src-path "/Users/armaniferrante/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src")

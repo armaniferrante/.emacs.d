@@ -10,8 +10,8 @@
 ;; Better imenu
 (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
 
-(use-package nodejs-repl
-  :ensure t)
+;(use-package nodejs-repl
+;  :ensure t)
 (use-package xref-js2
   :ensure t)
 ;; first run: brew install the_silver_searcher

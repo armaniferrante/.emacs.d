@@ -23,11 +23,11 @@
 
 ;; ensure we're always using tabs
 (setq-default tab-always-indent 'complete)
-(setq-default tab-width 2)
+(setq-default tab-width 4)
 (setq c-basic-offset 2)
 (setq js-indent-level 2)
 (setq typescript-indent-level 2)
-(setq rust-indent-offset 2)
+(setq rust-indent-offset 4)
 
 ;; highlight matching parens with no delay
 (setq show-paren-delay 0)
@@ -39,10 +39,6 @@
 ;; create matching brackets/parenthesis automatically
 (use-package autopair
   :ensure t)
-
-(use-package emojify
-	:ensure t)
-(add-hook 'after-init-hook #'global-emojify-mode)
 
 ;; open shell in same window
 (add-to-list 'display-buffer-alist
