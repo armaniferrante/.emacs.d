@@ -1,55 +1,49 @@
+;; Set color theme.
 (use-package atom-one-dark-theme
   :ensure t)
 (column-number-mode 1)
 
-;; transparent window
+;; Transparent window.
 (set-frame-parameter (selected-frame) 'alpha '(99 . 99))
 (add-to-list 'default-frame-alist '(alpha . (99 . 99)))
 
-;; font size
+;; Font size.
 (set-face-attribute 'default nil :height 110)
 
-;; always show line number
+;; Always show line number.
 (global-linum-mode 1)
 
+;; Hide default startup message.
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq-default fill-column 80)
+;; Hide the toolbar.
+(tool-bar-mode -1)
 
+;; Draw line at 100 chars.
+(setq-default fill-column 100)
 (use-package fill-column-indicator
   :ensure t)
 
-;; ensure we're always using tabs
-(setq-default tab-always-indent 'complete)
 (setq-default tab-width 2)
-(setq c-basic-offset 2)
-(setq js-indent-level 2)
-(setq typescript-indent-level 2)
-(setq rust-indent-offset 2)
 
-;; highlight matching parens with no delay
+;; Highlight matching parens with no delay.
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
-;; highlight current line
+;; Highlight current line.
 (global-hl-line-mode +1)
 
-;; create matching brackets/parenthesis automatically
+;; Create matching brackets/parenthesis automatically.
 (use-package autopair
   :ensure t)
 
-(use-package emojify
-	:ensure t)
-(add-hook 'after-init-hook #'global-emojify-mode)
-
-;; open shell in same window
+;; Open shell in same window.
 (add-to-list 'display-buffer-alist
              `(,(regexp-quote "*shell") display-buffer-same-window))
 
-
-;; always pop the following buffers at the bottom
+;; Always pop the following buffers at the bottom.
 (setq compilation-window-height 25)
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*Flycheck errors*" eos)
@@ -91,7 +85,7 @@
               (reusable-frames . visible)
               (window-height   . .1)))
 
-;; easy window navigation
+;; Easy window navigation (macOS).
 (global-set-key (kbd "s-<up>") 'windmove-up)
 (global-set-key (kbd "s-<down>") 'windmove-down)
 (global-set-key (kbd "s-<left>") 'windmove-left)

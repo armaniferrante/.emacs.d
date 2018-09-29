@@ -1,6 +1,6 @@
 (use-package go-mode
   :ensure t)
-(setenv "GOPATH" "/Users/armaniferrante/Documents/code/")
+(setenv "GOPATH" "/home/armaniferrante/go")
 
 ;; 0)go get golang.org/x/tools/cmd/...
 ;;    - installs go doc and others
@@ -55,18 +55,18 @@
 (defun go-save-hook ()
   (when (eq major-mode 'go-mode)
     (gofmt-before-save)
-    (go-test-current-coverage)))
+    ;(go-test-current-coverage)
+		))
 
-;; autocomplete
-
+;; Autocomplete.
 (defun auto-complete-for-go ()
   (auto-complete-mode 1))
 (add-hook 'go-mode-hook 'auto-complete-for-go)
-
-;; go-autocomplete
-
 (use-package go-autocomplete
   :ensure t)
+
+(use-package go-projectile
+	:ensure t)
 
 ;; go get -u github.com/nsf/gocode
 (with-eval-after-load 'go-mode

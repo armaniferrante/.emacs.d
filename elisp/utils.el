@@ -6,11 +6,17 @@
   :config
   (which-key-mode))
 
-;; git porcelain
+;; Git porcelain.
 (use-package magit
   :ensure t)
 
-;; backup files go into designated directory
+;; Backup files go into designated directory.
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 (setq make-backup-files nil)
+
+(use-package docker-tramp
+  :ensure t)
+
+;; Ensure we can use clipboard when doing copy/past commands from other apps.
+(setq x-select-enable-clipboard t)
