@@ -1,5 +1,5 @@
-(use-package atom-one-dark-theme
-  :ensure t)
+;(use-package atom-one-dark-theme
+;  :ensure t)
 (column-number-mode 1)
 
 ;; transparent window
@@ -13,19 +13,20 @@
 (global-linum-mode 1)
 
 (setq inhibit-startup-message t)
-(tool-bar-mode -1)
+;(tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq-default fill-column 80)
+(setq-default fill-column 100)
 
 (use-package fill-column-indicator
   :ensure t)
 
 ;; ensure we're always using tabs
-(setq-default tab-always-indent 'complete)
+;(setq-default tab-always-indent 'complete)
 (setq-default tab-width 4)
 (setq c-basic-offset 2)
 (setq js-indent-level 2)
+(setq-default js2-basic-offset 2)
 (setq typescript-indent-level 2)
 (setq rust-indent-offset 4)
 

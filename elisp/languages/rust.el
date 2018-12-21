@@ -64,13 +64,13 @@
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (add-hook 'toml-mode-hook 'cargo-minor-mode))
 
-(defun set-two-spaces ()
-  (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 2))
+;(defun set-two-spaces ()
+;  (setq-default indent-tabs-mode nil)
+;  (setq-default tab-width 2))
 
 (defun my-rust-mode-hook ()
   (flycheck-rust-setup)
-  (rust-enable-format-on-save)
+  ;(rust-enable-format-on-save)
   (racer-mode))
   ;(set-two-spaces))
 
