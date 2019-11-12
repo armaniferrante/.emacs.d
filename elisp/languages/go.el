@@ -55,7 +55,8 @@
 (defun go-save-hook ()
   (when (eq major-mode 'go-mode)
     (gofmt-before-save)
-    (go-test-current-coverage)))
+    ; (go-test-current-coverage)
+		))
 
 ;; autocomplete
 

@@ -1,5 +1,5 @@
-;(use-package atom-one-dark-theme
-;  :ensure t)
+(use-package atom-one-dark-theme
+  :ensure t)
 (column-number-mode 1)
 
 ;; transparent window
@@ -23,7 +23,7 @@
 
 ;; ensure we're always using tabs
 ;(setq-default tab-always-indent 'complete)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 (setq c-basic-offset 2)
 (setq js-indent-level 2)
 (setq-default js2-basic-offset 2)
