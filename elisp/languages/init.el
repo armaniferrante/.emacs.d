@@ -18,10 +18,16 @@
 (load "~/.emacs.d/elisp/languages/rust.el")
 (load "~/.emacs.d/elisp/languages/go.el")
 (load "~/.emacs.d/elisp/languages/terraform.el")
+(load "~/.emacs.d/elisp/languages/c++.el")
 (load "~/.emacs.d/elisp/languages/solidity.el")
 (load "~/.emacs.d/elisp/languages/python.el")
 (load "~/.emacs.d/elisp/languages/react.el")
 ;(load "~/.emacs.d/elisp/languages/js.el")
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
 
 (use-package protobuf-mode
   :ensure t)

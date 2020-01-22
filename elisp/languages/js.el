@@ -10,8 +10,6 @@
 ;; Better imenu
 (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
 
-;(use-package nodejs-repl
-;  :ensure t)
 (use-package xref-js2
   :ensure t)
 ;; first run: brew install the_silver_searcher
@@ -20,6 +18,11 @@
 
 (use-package prettier-js
 	:ensure t)
+
+;; Indentation.
+(setq js-indent-level 2)
+(setq-default js2-basic-offset 2)
+(setq typescript-indent-level 2)
 
 (defun my-js-mode-hook ()
   (flycheck-mode +1)

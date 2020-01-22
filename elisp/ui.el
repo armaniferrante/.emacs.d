@@ -12,23 +12,19 @@
 ;; always show line number
 (global-linum-mode 1)
 
+;; Hide default startup message.
 (setq inhibit-startup-message t)
-;(tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq-default fill-column 100)
+;; Hide the toolbar.
+(tool-bar-mode -1)
 
+;; Draw line at 100 chars.
+(setq-default fill-column 100)
 (use-package fill-column-indicator
   :ensure t)
 
-;; ensure we're always using tabs
-;(setq-default tab-always-indent 'complete)
 (setq-default tab-width 2)
-(setq c-basic-offset 2)
-(setq js-indent-level 2)
-(setq-default js2-basic-offset 2)
-(setq typescript-indent-level 2)
-(setq rust-indent-offset 4)
 
 ;; highlight matching parens with no delay
 (setq show-paren-delay 0)
