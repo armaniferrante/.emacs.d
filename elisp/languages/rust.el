@@ -43,5 +43,5 @@
 ;;       and nightly.
 ;;
 ;; To find: echo `rustc --print sysroot`/lib/rustlib/src/rust/src.
-(setq racer-rust-src-path "/home/armaniferrante/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
-;(setq racer-rust-src-path "/home/armaniferrante/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+;(setq racer-rust-src-path "/home/armaniferrante/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+(setq racer-rust-src-path "/home/armaniferrante/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")

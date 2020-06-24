@@ -10,10 +10,6 @@
   :ensure t)
 (add-hook 'python-mode-hook 'flycheck-mode)
 
-;; highlight entire line for errors
-(set-face-attribute 'flycheck-error nil :background "red")
-(set-face-attribute 'flycheck-error nil :foreground "white")
-
 (flycheck-define-checker
     python-mypy ""
     :command ("mypy"

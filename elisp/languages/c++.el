@@ -17,8 +17,10 @@
   :init
   (yas-global-mode 1))
 
-;; Tags for code navigation.
-;; Must run `sudo apt-get install global` before using.
+;; Tags for code navigation. Run
+;; * `sudo apt-get install global`
+;; * `gtags` when the current directory is at your project root
+;; before using.
 (use-package ggtags
   :ensure t
   :config
@@ -59,8 +61,8 @@
 
 ;; Setup hooks into cmode.
 (defun my-c++-mode-hook ()
+	(add-hook 'c-mode-common-hook 'my-c++-mode-hook)
 	(add-hook 'before-save-hook 'clang-format-buffer-smart-on-save))
-;(add-hook 'c-mode-common-hook 'my-c++-mode-hook)
 
 ;; WARNING: breaks c header files. C++ only.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))

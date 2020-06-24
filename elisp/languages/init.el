@@ -21,6 +21,7 @@
 (load "~/.emacs.d/elisp/languages/rust.el")
 (load "~/.emacs.d/elisp/languages/go.el")
 (load "~/.emacs.d/elisp/languages/terraform.el")
+(load "~/.emacs.d/elisp/languages/c.el")
 (load "~/.emacs.d/elisp/languages/c++.el")
 (load "~/.emacs.d/elisp/languages/solidity.el")
 (load "~/.emacs.d/elisp/languages/python.el")
@@ -35,6 +36,9 @@
   :ensure t
   :init
   (global-flycheck-mode t))
+;; Highlight entire line for errors.
+(set-face-attribute 'flycheck-error nil :background "red")
+(set-face-attribute 'flycheck-error nil :foreground "white")
 
 (use-package protobuf-mode
   :ensure t)
@@ -49,4 +53,7 @@
 	:ensure t)
 
 (use-package lua-mode
+	:ensure t)
+
+(use-package scala-mode
 	:ensure t)

@@ -4,8 +4,8 @@
 (column-number-mode 1)
 
 ;; Transparent window.
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+;(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+;(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
 
 ;; Font size.
 (set-face-attribute 'default nil :height 110)
