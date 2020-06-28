@@ -1,6 +1,8 @@
 ;; CMake syntax highlighting.
 (use-package cmake-mode
 	:ensure t)
+;; Ensure we use cmake mode for these files.
+(add-to-list 'auto-mode-alist '("\\CMakeLists.txt\\'" . cmake-mode))
 
 ;; Auto completion.
 (use-package auto-complete
@@ -27,8 +29,7 @@
   (add-hook 'c-mode-common-hook
 	    (lambda ()
 	      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-		(ggtags-mode 1))))
-  )
+		(ggtags-mode 1)))))
 
 ;; Switch between header/implementation files.
 (add-hook 'c-mode-common-hook
@@ -36,19 +37,26 @@
 			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 ;; Tell company where the headers are.
-;(add-to-list 'company-c-headers-path-system "/usr/include/c++/7.4.0/")
+; (add-to-list 'company-c-headers-path-system "/usr/include/c++/7.4.0/")
 
 (use-package clang-format
 	:ensure t)
 
 ;; Flycheck will use the .clang-tidy configuration.
 (use-package flycheck-clang-tidy
-  :after flycheck
-  :hook
-  (flycheck-mode . flycheck-clang-tidy-setup)
-  )
+ 	:after flycheck
+ 	:hook
+ 	(flycheck-mode . flycheck-clang-tidy-setup))
+
+;; (use-package flycheck-irony
+;; 	:ensure t
+;;  	:after flycheck
+;;  	:hook
+;;  	(flycheck-mode . flycheck-irony-setup)
+;;  	)
 
 ;; Format on save.
+;;
 ;; Make sure to install clang format first, i.e., run
 ;; `sudo apt-get install clang-format`.
 (defun clang-format-buffer-smart ()
@@ -61,8 +69,9 @@
 
 ;; Setup hooks into cmode.
 (defun my-c++-mode-hook ()
-	(add-hook 'c-mode-common-hook 'my-c++-mode-hook)
-	(add-hook 'before-save-hook 'clang-format-buffer-smart-on-save))
+	(add-hook (make-local-variable 'before-save-hook) 'clang-format-buffer-smart-on-save))
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; WARNING: breaks c header files. C++ only.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
