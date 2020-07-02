@@ -2,10 +2,17 @@
 
 Complete installation description/automation is a wip.
 
-## C++
+## Linux
 
 ```
-make install-cpp
+make linux
 ```
 
-Then in emacs, run `M-x irony-install-server`.
+## macOS
+
+```
+make macos
+```
+
+For each system, make sure to manually run the postscript commands after
+running the Makefile.
