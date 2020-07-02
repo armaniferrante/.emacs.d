@@ -1,0 +1,11 @@
+*~
+*#
+session*
+transient/
+url/
+*.dat
+bookmarks
+elpa/
+eshell/
+irony/
+rtags/
