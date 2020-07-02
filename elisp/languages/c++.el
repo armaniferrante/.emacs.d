@@ -1,6 +1,12 @@
 ;; CMake syntax highlighting.
 (use-package cmake-mode
 	:ensure t)
+
+;; Optional environment variable to set for certain c++ libraries to
+;; compile within cmake-ide. In theory this should be set by the environment,
+;; but we need this on macOS for some reason. :/
+; (setenv "OPENSSL_ROOT_DIR" "/usr/local/opt/openssl/")
+
 ;; Ensure we use cmake mode for these files.
 (add-to-list 'auto-mode-alist '("\\CMakeLists.txt\\'" . cmake-mode))
 
@@ -12,10 +18,10 @@
   :ensure t
   :hook (c++-mode . rtags-start-process-unless-running)
   :config (setq rtags-completions-enabled t
-		rtags-path "/home/armaniferrante/.emacs.d/rtags/src/rtags.el"
-		rtags-rc-binary-name "/home/armaniferrante/.emacs.d/rtags/bin/rc"
+		rtags-path (concat (getenv "HOME") "/.emacs.d/rtags/src/rtags.el")
+		rtags-rc-binary-name (concat (getenv "HOME") "/.emacs.d/rtags/bin/rc")
 		rtags-use-helm t
-		rtags-rdm-binary-name "/home/armaniferrante/.emacs.d/rtags/bin/rdm")
+		rtags-rdm-binary-name (concat (getenv "HOME") "/.emacs.d/rtags/bin/rdm"))
   :bind (
 				 ("M-." . rtags-find-symbol-at-point)
 				 ("M-," . rtags-location-stack-back)
