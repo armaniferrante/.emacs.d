@@ -17,7 +17,8 @@
   :ensure t)
 
 (use-package cargo
-  :ensure t  :init
+  :ensure t
+	:init
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (add-hook 'toml-mode-hook 'cargo-minor-mode))
 
