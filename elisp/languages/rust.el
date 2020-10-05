@@ -13,6 +13,7 @@
 ; curl https://sh.rustup.rs -sSf | sh
 ; rustup component add rust-src
 ; cargo install racer
+;; See https://github.com/racer-rust/racer.
 (use-package racer
   :ensure t)
 

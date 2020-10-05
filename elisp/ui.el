@@ -22,7 +22,7 @@
 (tool-bar-mode -1)
 
 ;; Draw line at 100 chars.
-(setq-default fill-column 100)
+(setq-default fill-column 80)
 (use-package fill-column-indicator
   :ensure t)
 
