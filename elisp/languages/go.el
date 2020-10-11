@@ -2,6 +2,9 @@
   :ensure t)
 (setenv "GOPATH" "/home/armaniferrante/go")
 
+(use-package exec-path-from-shell
+  :ensure t)
+
 ;; 0)go get golang.org/x/tools/cmd/...
 ;;    - installs go doc and others
 ;; 1) First run M-x package-install and enter exec-path-from-shell

@@ -20,3 +20,6 @@
 
 ;; Ensure we can use clipboard when doing copy/past commands from other apps.
 (setq x-select-enable-clipboard t)
+
+;; Remap "windows" key to be the meta key.
+(setq x-super-keysym 'meta)
