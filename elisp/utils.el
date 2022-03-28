@@ -23,3 +23,6 @@
 
 ;; Remap "windows" key to be the meta key.
 (setq x-super-keysym 'meta)
+
+(setq backup-directory-alist '((".*" . "~/.Trash")))
+(setq create-lockfiles nil)
